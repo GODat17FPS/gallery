@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: art-gallery-api
+
+  # H2 Database Configuration (Development)
+  datasource:
+    url: jdbc:h2:mem:artgallery;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+  # H2 Console (Development)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+server:
+  port: 8080
+
+# CORS Configuration
+cors:
+  allowed-origins: http://localhost:3000
+
+# Logging
+logging:
+  level:
+    com.artgallery: DEBUG
+    org.springframework.security: DEBUG
+
+---
+# Production Profile (MySQL)
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/art_gallery?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  
+  h2:
+    console:
+      enabled: false
