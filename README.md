@@ -21,8 +21,8 @@ A view-only MVP art gallery web application with React frontend and Java Spring 
 - CSS (Custom design system)
 
 ### Backend
-- Java 17
-- Spring Boot 3.4.5
+- Java 15
+- Spring Boot 2.7.18
 - Spring Security (BCrypt)
 - Spring Data JPA
 - H2 Database (dev) / MySQL (prod)
@@ -31,7 +31,7 @@ A view-only MVP art gallery web application with React frontend and Java Spring 
 
 ### Prerequisites
 
-- **Java 17+** (required for Spring Boot 3.4.5)
+- **Java 15** (required for the downgraded backend)
 - **Maven** (for backend)
 - **Node.js 18+** (for frontend)
 - **npm** or **yarn**
@@ -50,6 +50,19 @@ mvn spring-boot:run
 ```
 
 The backend will start on **http://localhost:8080**
+
+### Running with Docker
+
+1. **Build the image**:
+   ```bash
+   cd backend
+   docker build -t art-gallery-backend .
+   ```
+
+2. **Run the container**:
+   ```bash
+   docker run -p 8080:8080 art-gallery-backend
+   ```
 
 ### Running the Frontend
 
